@@ -1,0 +1,6 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: -webkit-linear-gradient(to right, #f2709c, #ff9472);
+  background: linear-gradient(to right, #f2709c, #ff9472);
+}

@@ -1,0 +1,13 @@
+.todo {
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 4px 10px;
+  display: flex;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.complete {
+  text-decoration: line-through;
+  color: rgb(212, 212, 212);
+}
