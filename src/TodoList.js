@@ -3,15 +3,30 @@ import TodoForm from './TodoForm';
 import Todo from './Todo';
 import "./style/TodoList.css";
 
-export default function TodoList({children}) {
+export default function TodoList() {
 
     const [todos, setTodos] = useState([]);
 
+    /* Je n'ai pas utilisé de useEffect pour verifier la longueur de mon array [todos] car je ne pourrais pas empecher l'éxecution du code ci dessous dans un useEffect */
     const addTodo = todo => {
         const newTodo = [todo, ...todos];
-
-        setTodos(newTodo);
-        console.log(todo, ...todos);
+        const todosDiv = document.querySelectorAll('.todo');
+        const todosCompleteDiv = document.querySelectorAll('.complete');
+        if (todosDiv.length == 0) {
+            setTodos(newTodo);
+        }else if (todosDiv.length <= 10) {
+            if(todosDiv.length >= 5) {
+                if((todosDiv.length - todosCompleteDiv.length) < 5) {
+                    setTodos(newTodo);
+                } else {
+                    window.alert("Trop de taches en cours, veuillez en terminer quelques une avant d'en rajouter.")
+                }
+            }else {
+                setTodos(newTodo);
+            }
+        }else {
+            window.alert("Liste trop longue, veuillez supprimer des taches.")
+        }
     }
 
     const completeTodo = id => {
@@ -26,7 +41,6 @@ export default function TodoList({children}) {
 
     const deleteTodo = id => {
         const removeTodo = [...todos].filter(todo => todo.id !== id);
-
         setTodos(removeTodo);
     }
 
